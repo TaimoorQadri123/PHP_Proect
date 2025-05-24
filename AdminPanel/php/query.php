@@ -42,37 +42,37 @@ if (isset($_POST['addHospital'])) {
     }
 }
 // ------------------- Update Hospital --------------------
-// if (isset($_POST['updateHospital'])) {
-//     $hospitalId = $_GET['hId'];
-//     $hospitalName = $_POST['hName'];
-//     $hospitalLocation = $_POST['hLocation'];
+if (isset($_POST['updateHospital'])) {
+    $hospitalId = $_GET['hId'];
+    $hospitalName = $_POST['hName'];
+    $hospitalLocation = $_POST['hLocation'];
 
-//     $query = $pdo->prepare("UPDATE hospitals SET name = :hName, location = :hLocation WHERE id = :hId");
+    $query = $pdo->prepare("UPDATE hospitals SET name = :hName, location = :hLocation WHERE id = :hId");
 
-//     if (!empty($_FILES['hImage']['name'])) {
-//         $hospitalImage = $_FILES['hImage']['name'];
-//         $hospitalTmp = $_FILES['hImage']['tmp_name'];
-//         $extension = pathinfo($hospitalImage, PATHINFO_EXTENSION);
-//         $destination = "images/" . $hospitalImage;
-//         $allowed = ["jpg", "jpeg", "png", "webp", "svg"];
+    if (!empty($_FILES['hImage']['name'])) {
+        $hospitalImage = $_FILES['hImage']['name'];
+        $hospitalTmp = $_FILES['hImage']['tmp_name'];
+        $extension = pathinfo($hospitalImage, PATHINFO_EXTENSION);
+        $destination = "images/" . $hospitalImage;
+        $allowed = ["jpg", "jpeg", "png", "webp", "svg"];
 
-//         if (in_array($extension, $allowed)) {
-//             if (move_uploaded_file($hospitalTmp, $destination)) {
-//                 $query = $pdo->prepare("UPDATE hospitals SET name = :hName, location = :hLocation, image = :hImage WHERE id = :hId");
-//                 $query->bindParam(':hImage', $hospitalImage);
-//             }
-//         } else {
-//             echo "<script>alert('Invalid image format')</script>";
-//         }
-//     }
+        if (in_array($extension, $allowed)) {
+            if (move_uploaded_file($hospitalTmp, $destination)) {
+                $query = $pdo->prepare("UPDATE hospitals SET name = :hName, location = :hLocation, image = :hImage WHERE id = :hId");
+                $query->bindParam(':hImage', $hospitalImage);
+            }
+        } else {
+            echo "<script>alert('Invalid image format')</script>";
+        }
+    }
 
-//     $query->bindParam(':hName', $hospitalName);
-//     $query->bindParam(':hLocation', $hospitalLocation);
-//     $query->bindParam(':hId', $hospitalId);
-//     $query->execute();
+    $query->bindParam(':hName', $hospitalName);
+    $query->bindParam(':hLocation', $hospitalLocation);
+    $query->bindParam(':hId', $hospitalId);
+    $query->execute();
 
-//     echo "<script>alert('Hospital updated'); location.assign('manage-hospitals.php');</script>";
-// }
+    echo "<script>alert('Hospital updated'); location.assign('ViewHospital.php');</script>";
+}
 
 // ------------------- Delete Hospital --------------------
 // if (isset($_GET['deleteHospitalId'])) {
@@ -82,5 +82,14 @@ if (isset($_POST['addHospital'])) {
 //     $query->execute();
 //     echo "<script>alert('Hospital deleted'); location.assign('manage-hospitals.php');</script>";
 // }
+if (isset($_GET['hospitalId'])) {
+    $hospitalId = $_GET['hospitalId'];
+    $query = $pdo->prepare("DELETE FROM hospitals WHERE id = :hId");
+    $query->bindParam(':hId', $hospitalId);
+    $query->execute();
+
+    echo "<script>alert('Hospital deleted'); location.assign('ViewHospital.php');</script>";
+}
+
 ?>
 ?>

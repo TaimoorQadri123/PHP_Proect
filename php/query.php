@@ -13,6 +13,7 @@ if (isset($_POST['registerUser'])) {
     $userEmail = $_POST['uEmail'];
     $userPassword = $_POST['uPassword'];
     $userConfirmPassword = $_POST['uConfirmPassword'];
+    $userRole = $_POST['uRole'];
     // $userRole = $_POST['uRole'] ?? 2; // Default: Parent
 
     if (empty($userName)) {
@@ -49,7 +50,7 @@ if (isset($_POST['registerUser'])) {
         $query->bindParam('uRole', $userRole);
         $query->execute();
 
-        echo "<script>alert('User registered successfully'); location.assign('login.php');</script>";
+        echo "<script>alert('User registered successfully'); location.assign('signin.php');</script>";
     }
 }
 
@@ -77,7 +78,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['adminEmail'] = $user['email'];
                     $_SESSION['adminName'] = $user['name'];
                     $_SESSION['adminRole'] = $user['role_id'];
-
+                     $_SESSION['Role'] = 1;
                     echo "<script>location.assign('adminPanel/index.php?success=login successfully admin')</script>";
                 }
                 else if($user['role_id'] == 2){
@@ -85,7 +86,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['parentEmail'] = $user['email'];
                     $_SESSION['parentName'] = $user['name'];
                     $_SESSION['parentRole'] = $user['role_id'];
-
+                     $_SESSION['Role'] = 2;
                     echo "<script>location.assign('adminPanel/index.php?success=login successfully parent')</script>";
                 }
                 else if($user['role_id'] == 3){
@@ -93,7 +94,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['hospitalEmail'] = $user['email'];
                     $_SESSION['hospitalName'] = $user['name'];
                     $_SESSION['hospitalRole'] = $user['role_id'];
-
+                     $_SESSION['Role'] = 3;
                     echo "<script>location.assign('adminPanel/index.php?success=login successfully hospital')</script>";
                 }
             }

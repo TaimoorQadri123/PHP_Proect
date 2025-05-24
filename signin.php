@@ -56,7 +56,7 @@ include('php/query.php');
                             </a>
                             <h3>Sign In</h3>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-4">
                             <form action="" method="post">
                             <input type="email" name="uEmail" value="<?php echo $userEmail?>" class="form-control" id="floatingInput" placeholder="Email address">
                             <label for="floatingInput">Email address</label>

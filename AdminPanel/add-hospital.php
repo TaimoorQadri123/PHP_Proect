@@ -31,7 +31,7 @@ include("components/header.php");
                         <small class="text-danger"><?php echo $hospitalImageErr ?></small>
                     </div>
 
-                    <button name="addHospital" type="submit" class="btn btn-primary">Add Hospital</button>
+                    <button name="addHospital" class="btn btn-primary">Add Hospital</button>
                 </form>
             </div>
         </div>
