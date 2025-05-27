@@ -12,18 +12,38 @@ include("components/header.php");
         <div class="col-md-6">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Add Hospital</h6>
-     <form method="post">
-                   <input type="text" name="vaccineName" class="form-control mb-4" placeholder="Vaccine Name" required>
-                   <textarea name="vaccineDesc" placeholder="Vaccine Description" class="form-control mb-4" required></textarea>
-                   <input type="number" name="doseNumber" placeholder="Dose Number" required class="form-control mb-4">
-                   <input type="text" name="ageGroup" placeholder="Age Group" required class="form-control mb-4">
-                   <input type="text" name="diseaseTargeted" placeholder="Disease Targeted (optional)" class="form-control mb-4">
-                   <select name="status" required class="form-control mb-4">
+    <form method="post">
+             
+            <div>
+                   <input type="text" name="vaccineName" value="<?php echo $vaccineName ?>" class="form-control mb-4" placeholder="Vaccine Name" required>
+                   <small class="text-danger"><?php echo $vaccineNameErr ?></small>
+                   
+            </div>
+            <div>
+                   <textarea name="vaccineDesc" value="<?php echo $vaccinedesc ?>" placeholder="Vaccine Description" class="form-control mb-4" required></textarea>
+                   <small class="text-danger"><?php echo $vaccinedescErr ?></small>
+            </div>  
+            <div>     
+                   <input type="number" name="doseNumber" value="<?php echo $vaccineDose ?>" placeholder="Dose Number" required class="form-control mb-4">
+                   <small class="text-danger"><?php echo $vaccineDoseErr ?></small>
+            </div>       
+            <div>
+                   <input type="text" name="ageGroup" value="<?php echo $vaccineage?>" placeholder="Age Group" required class="form-control mb-4">
+                   <small class="text-danger"><?php echo $vaccineageErr ?></small>
+            </div>       
+            <div>
+                   <input type="text" name="diseaseTargeted" value="<?php echo $vaccinedisease?>" placeholder="Disease Targeted (optional)" class="form-control mb-4">
+                   <small class="text-danger"><?php echo $vaccinediseaseErr ?></small>
+            </div>       
+            <div>
+                   <select name="status" value="<?php echo $vaccineStatus?>" required class="form-control mb-4">
                    <option value="">Select Status</option >
                    <option value="active">Active</option>
                    <option value="inactive">Inactive</option>
                    </select>
-          <button type="submit" name="addVaccine" class="btn btn-primary">Add Vaccine</button>
+                   <small class="text-danger"><?php echo $vaccineStatusErr ?></small>
+            </div>       
+          <button  name="addVaccine" class="btn btn-primary">Add Vaccine</button>
     </form>
 
             </div>

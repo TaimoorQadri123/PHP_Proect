@@ -91,5 +91,60 @@ if (isset($_GET['hospitalId'])) {
     echo "<script>alert('Hospital deleted'); location.assign('ViewHospital.php');</script>";
 }
 
+// addVaccine work
+
+$vaccineName = $vaccinedesc = $vaccineDose = $vaccineage = $vaccinedisease = $vaccineStatus = "";
+$vaccineNameErr = $vaccinedescErr = $vaccineDoseErr = $vaccineageErr = $vaccinediseaseErr = $vaccineStatusErr= "";
+
+if (isset($_POST['addVaccine'])) {
+    $vaccineName = $_POST['vaccineName'];
+    $vaccinedesc = $_POST['vaccineDesc'];
+    $vaccineDose = $_POST['doseNumber'];
+    $vaccineage = $_POST['ageGroup'];
+    $vaccinedisease = $_POST['diseaseTargeted'];
+    $vaccineStatus = $_POST['status'];
+
+    if (empty($vaccineName)) {
+        $vaccineNameErr = "vaccine Name is required";
+    }
+    if (empty($vaccinedesc)) {
+        $vaccinedescErr = "vaccine desc is required";
+    }
+    if (empty($vaccineDose)) {
+        $vaccineDoseErr = "vaccine Dose is required";
+    }
+    if (empty($vaccineage)) {
+        $vaccineageErr = "vaccine age is required";
+    }
+    if (empty($vaccinedisease)) {
+        $vaccinediseaseErr = "vaccine disease is required";
+    }
+    if (empty($vaccineStatus)) {
+        $vaccineStatusErr = "vaccine Status is required";
+    }
+
+    if (empty($vaccineNameErr) && empty($vaccinedescErr) && empty($vaccineDoseErr) && empty($vaccineageErr) && empty($vaccinediseaseErr) && empty($vaccineStatusErr)) {
+
+        $query = $pdo->prepare("insert into vaccines (name, description , dose , age , disease , status ) VALUES (:Vname, :Vdescription , :Vdose , :Vage , :Vdisease , :Vstatus )");
+            $query->bindParam(':Vname', $vaccineName);
+            $query->bindParam(':Vdescription', $vaccinedesc);
+            $query->bindParam(':Vdose', $vaccineDose);
+            $query->bindParam(':Vage', $vaccineage);
+            $query->bindParam(':Vdisease', $vaccinedisease);
+            $query->bindParam(':Vstatus', $vaccineStatus);
+
+            $query->execute();
+
+            echo "<script>alert('Vaccine added successfully'); location.assign('addVaccine.php');</script>";
+    }
+}
+
+
+
+
+
+
+
+
 ?>
-?>
+

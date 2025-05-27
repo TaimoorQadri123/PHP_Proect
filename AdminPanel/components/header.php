@@ -137,15 +137,7 @@
                         <a href="ViewHospital.php" class="dropdown-item">View Hospitals</a>
                     </div>
                 </div>
-                    <div class="nav-item dropdown">
-                           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                               <i class="fa fa-syringe me-2"></i>Vaccine
-                            </a>
-                          <div class="dropdown-menu bg-transparent border-0">
-                             <a href="addVaccine.php" class="dropdown-item">Add Vaccine</a>
-                             <a href="view-vaccine.php" class="dropdown-item">View Vaccines</a>
-                           </div>
-                    </div>
+                    
 
                 <a href="manage-users.php" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Manage Users</a>
                 <a href="bookings.php" class="nav-item nav-link"><i class="fa fa-book me-2"></i>All Bookings</a>
@@ -162,6 +154,15 @@
             <!-- Hospital Links -->
             <?php if(isset($_SESSION['Role']) && $_SESSION['Role'] == 3): ?>
                 <a href="hospital-bookings.php" class="nav-item nav-link"><i class="fa fa-calendar-alt me-2"></i>View Appointments</a>
+                <div class="nav-item dropdown">
+                           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                               <i class="fa fa-syringe me-2"></i>Vaccine
+                            </a>
+                          <div class="dropdown-menu bg-transparent border-0">
+                             <a href="addVaccine.php" class="dropdown-item">Add Vaccine</a>
+                             <a href="ViewVaccine.php" class="dropdown-item">View Vaccines</a>
+                           </div>
+                    </div>
                 <a href="update-vaccine-status.php" class="nav-item nav-link"><i class="fa fa-check-circle me-2"></i>Update Status</a>
             <?php endif; ?>
 

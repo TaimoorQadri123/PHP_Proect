@@ -33,6 +33,11 @@ include('php/query.php');
     <!-- Template Stylesheet -->
     <link href="AdminPanel/css/style.css" rel="stylesheet">
 </head>
+<style>
+    body{
+      background-color:rgb(241, 241, 241);
+    }
+</style>
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
