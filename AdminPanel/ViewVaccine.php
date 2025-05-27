@@ -43,7 +43,7 @@ include('components/header.php');
                                             <td><?php echo $vaccine['description'] ?></td>
                                             <td><?php echo $vaccine['dose'] ?></td>
                                             <td><?php echo $vaccine['age'] ?></td>
-                                            <td><?php echo $vaccine['diseases'] ?></td>
+                                            <td><?php echo $vaccine['disease'] ?></td>
                                             <td><?php echo $vaccine['status'] ?></td>
 
 
