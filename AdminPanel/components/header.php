@@ -137,23 +137,25 @@
                         <a href="ViewHospital.php" class="dropdown-item">View Hospitals</a>
                     </div>
                 </div>
-                    
+                    <a href="ViewVaccine.php" class="nav-link dropdown-toggle" >
+                               <i class="fa fa-syringe me-2"></i>View Vaccine
+                            </a>
 
                 <a href="manage-users.php" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Manage Users</a>
-                <a href="bookings.php" class="nav-item nav-link"><i class="fa fa-book me-2"></i>All Bookings</a>
+                <a href="ViewBooking.php" class="nav-item nav-link"><i class="fa fa-book me-2"></i>All Bookings</a>
             <?php endif; ?>
 
             <!-- Parent Links -->
             <?php if(isset($_SESSION['Role']) && $_SESSION['Role'] == 2): ?>
-                <a href="add-child.php" class="nav-item nav-link"><i class="fa fa-child me-2"></i>Child Info</a>
+                <a href="ViewBooking.php" class="nav-item nav-link"><i class="fa fa-child me-2"></i>Child Info</a>
                 <a href="my-vaccinations.php" class="nav-item nav-link"><i class="fa fa-syringe me-2"></i>Vaccination Report</a>
                 
-                <a href="book-hospital.php" class="nav-item nav-link"><i class="fa fa-calendar-check me-2"></i>Book Hospital</a>
+                <a href="Bookvaccine.php" class="nav-item nav-link"><i class="fa fa-calendar-check me-2"></i>Book Hospital</a>
             <?php endif; ?>
 
             <!-- Hospital Links -->
             <?php if(isset($_SESSION['Role']) && $_SESSION['Role'] == 3): ?>
-                <a href="hospital-bookings.php" class="nav-item nav-link"><i class="fa fa-calendar-alt me-2"></i>View Appointments</a>
+                <a href="ViewBooking.php" class="nav-item nav-link"><i class="fa fa-calendar-alt me-2"></i>View Appointments</a>
                 <div class="nav-item dropdown">
                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                                <i class="fa fa-syringe me-2"></i>Vaccine

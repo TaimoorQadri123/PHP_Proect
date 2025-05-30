@@ -11,7 +11,7 @@ include("components/header.php");
     <div class="row vh-100 bg-light rounded mx-0">
         <div class="col-md-6">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Add Hospital</h6>
+                <h6 class="mb-4">Add Vaccine</h6>
     <form method="post">
              
             <div>

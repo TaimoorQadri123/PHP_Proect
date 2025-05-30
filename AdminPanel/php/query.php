@@ -41,6 +41,7 @@ if (isset($_POST['addHospital'])) {
         }
     }
 }
+
 // ------------------- Update Hospital --------------------
 if (isset($_POST['updateHospital'])) {
     $hospitalId = $_GET['hId'];
@@ -138,13 +139,119 @@ if (isset($_POST['addVaccine'])) {
             echo "<script>alert('Vaccine added successfully'); location.assign('addVaccine.php');</script>";
     }
 }
+     
+    
+            // updated vaccine   
+
+
+
+if (isset($_POST['updateVaccine'])) {
+    $vaccineId = $_GET['vId'];
+    $vaccineName = $_POST['vaccineName'];
+    $vaccinedesc = $_POST['vaccineDesc'];
+    $vaccineDose = $_POST['doseNumber'];
+    $vaccineage = $_POST['ageGroup'];
+    $vaccinedisease = $_POST['diseaseTargeted'];
+    $vaccineStatus = $_POST['status'];
+
+
+   $query = $pdo->prepare("UPDATE vaccines SET name = :Vname, description = :Vdescription, dose = :Vdose, age = :Vage, disease = :Vdisease, status = :Vstatus WHERE id = :Vid");
+    $query->bindParam(':Vname', $vaccineName);
+    $query->bindParam(':Vdescription', $vaccinedesc);
+    $query->bindParam(':Vdose', $vaccineDose);
+    $query->bindParam(':Vage', $vaccineage);
+    $query->bindParam(':Vdisease', $vaccinedisease);
+    $query->bindParam(':Vstatus', $vaccineStatus);
+    $query->bindParam(':Vid', $vaccineId);
+    $query->execute();
+
+    echo "<script>alert('Vaccine updated successfully'); location.assign('ViewVaccine.php');</script>";
+}
+
+// }
+
+// Delete Vaccine
+if (isset($_GET['vaccineId'])) {
+    $vaccineId = $_GET['vaccineId'];
+    $query = $pdo->prepare("DELETE FROM vaccines WHERE id = :vId");
+    $query->bindParam(':vId', $vaccineId);
+    $query->execute();
+    echo "<script>alert('Vaccine deleted successfully'); location.assign('ViewVaccine.php');</script>";
+}
 
 
 
 
+//   add book vaccine & hospital 
+
+if(isset($_POST['addBooking'])) {
+    $parentId = $_SESSION['parentId'];
+    $childName = $_POST['childName'];
+    $childGender = $_POST['childGender'];
+    $childAge = $_POST['childAge'];
+    $hospitalId = $_POST['hospitalId'];
+    $vaccineId = $_POST['vaccineId'];
+    $notes = $_POST['notes'];
+    $status = 'Pending';
+
+    $query = $pdo->prepare("INSERT INTO bookings (parent_id, hospital_id, vaccine_id, child_name, child_gender, child_age, status, notes) 
+                            VALUES (:parent_id, :hospital_id, :vaccine_id, :child_name, :child_gender, :child_age, :status, :notes)");
+
+    $query->bindParam(':parent_id', $parentId);
+    $query->bindParam(':hospital_id', $hospitalId);
+    $query->bindParam(':vaccine_id', $vaccineId);
+    $query->bindParam(':child_name', $childName);
+    $query->bindParam(':child_gender', $childGender);
+    $query->bindParam(':child_age', $childAge);
+    $query->bindParam(':status', $status);
+    $query->bindParam(':notes', $notes);
+
+    $query->execute();
+
+    echo "<script>alert('Booking created successfully!'); location.assign('Bookvaccine.php');</script>";
+}
+ 
+
+// update booking vaccine & hospital 
+
+if (isset($_POST['updateBooking'])) {
+    $bookingId = $_GET['bId'];
+    $parentId = $_SESSION['parentId'];
+    $childName = $_POST['childName'];
+    $childGender = $_POST['childGender'];
+    $childAge = $_POST['childAge'];
+    $hospitalId = $_POST['hospitalId'];
+    $vaccineId = $_POST['vaccineId'];
+    $notes = $_POST['notes'];
+    $status = 'Pending';
+
+    $query = $pdo->prepare("UPDATE bookings SET parent_id = :parent_id, hospital_id = :hospital_id, vaccine_id = :vaccine_id, child_name = :child_name, child_gender = :child_gender, child_age = :child_age, status = :status, notes = :notes WHERE id = :bid");
+
+    $query->bindParam(':parent_id', $parentId);
+    $query->bindParam(':hospital_id', $hospitalId);
+    $query->bindParam(':vaccine_id', $vaccineId);
+    $query->bindParam(':child_name', $childName);
+    $query->bindParam(':child_gender', $childGender);
+    $query->bindParam(':child_age', $childAge);
+    $query->bindParam(':status', $status);
+    $query->bindParam(':notes', $notes);
+    $query->bindParam(':bid', $bookingId);
+
+    $query->execute();
+
+    echo "<script>alert('Booking updated successfully'); location.assign('ViewBooking.php');</script>";
+}
 
 
+// delete boooking vaccine & hospital 
 
+if (isset($_GET['bookingId'])) {
+    $bookingId = $_GET['bookingId'];
+    $query = $pdo->prepare("DELETE FROM bookings WHERE id = :bId");
+    $query->bindParam(':bId', $bookingId);
+    $query->execute();
+    echo "<script>alert('booking deleted successfully'); location.assign('ViewBooking.php');</script>";
+}
 
 ?>
 
